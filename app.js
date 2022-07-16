@@ -96,7 +96,6 @@ app.post("/verification",function(req,res){
 	res.redirect('create.html');
 })
 
-
 //POST Login
 var loginData = {
 	"email": '',
@@ -109,16 +108,40 @@ app.post("/login",function(req,res)
 
 	db.collection('details').findOne(loginData,function(err, result){
 	if (err) throw err;
-  if (result===null) {console.log("Incorrect credentials"); res.redirect('failure.html');}
-	else {console.log(result.name + " welcome to Quizzer"); res.redirect('create.html');}
+	if (result===null) console.log("Incorrect credentials");
+	else console.log(result.name + " welcome to Quizzer");
 	});
+	res.redirect('success.html');
 })
 
-app.post("/failure",function(req,res)
-{
-  res.redirect('login.html');
-})
+var questionSchema = mongoose.Schema({
+    questionText:String,
+    option1: String,
+    option2: String,
+    option3: String,
+    option4: String,
+    answer : String
+});
 
+const Question = mongoose.model("Question",questionSchema);
+app.post('/question',function(req,res){
+    var quest=req.body.ques;
+    var opt1=req.body.option1;
+    var opt2=req.body.option2;
+    var opt3=req.body.option3;
+    var opt4=req.body.option4;
+    var answ=req.body.ans;
+    const question=new Question({
+        questionText:quest,
+        option1: opt1,
+        option2: opt2,
+        option3: opt3,
+        option4: opt4,
+        answer : answ
+    });
+    question.save();
+    res.sendFile(__dirname+"/public/create2.html");
+});
 //GET
 app.get('/',function(req,res){
    res.set({
