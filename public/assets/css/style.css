@@ -114,3 +114,31 @@
   color: #fff;
 }
 
+.choice{
+  display: inline-block;
+  width : 135px;
+  text-align: center;
+  border : 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  padding : 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

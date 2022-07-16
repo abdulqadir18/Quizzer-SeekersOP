@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Services - Brand</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/Contact-Form-by-Moorcam.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body style="/*background: url(&quot;design.jpg&quot;);*/background-position: 0 -60px;">
+    <section class="py-5 mt-5">
+        <div class="container" style="margin-bottom: 50px;">
+            <h1 style="text-align: center;">Quiz Name</h1>
+        </div>
+        <div class="container py-5" style="background-color:#27262e; margin-bottom:50px; border-radius: 20px;">
+            <div id="start">Start Quiz!</div>
+            <div id="quiz" style="display: none;">
+            <div class = "mb3" id="question"></div>
+            <div id="choices">
+                <div class="choice mb-3" id="A" onclick="checkAnswer('A')"></div>
+                <div class="choice mb-3" id="B" onclick="checkAnswer('B')"></div>
+                <div class="choice mb-3" id="C" onclick="checkAnswer('C')"></div>
+                <div class="choice mb-3" id="D" onclick="checkAnswer('D')"></div>
+            </div>
+            <div id="timer">
+                <div id="counter"></div>
+                <div id="btimeGauge"></div>
+                <div id="timeGauge"></div>
+            </div>
+            <div id="progress"></div>
+        </div>
+        <div id="scoreContainer" style="display: none"></div>
+        </div>
+        <div class="mb-3"><button class="btn btn-primary shadow d-block" type="submit" style="position: absolute;left:45%;margin-bottom:50px;"><a href="code.html">Go Back</a></button></div>
+    </section>
+    <script src="quiz.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bold-and-dark.js"></script>
+</body>
+
+</html>

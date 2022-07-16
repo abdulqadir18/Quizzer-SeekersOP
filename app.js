@@ -121,8 +121,15 @@ var questionSchema = mongoose.Schema({
     option4: String,
     answer : String
 });
+var cid=0;
+app.post("/create", function(req,res){
+	cid=Math.random();
+	cid=cid*10000;
+	cid=Math.floor(cid+1);
+	global.Question = mongoose.model(cid.toString(),questionSchema);
+	res.sendFile(__dirname+"/public/create2.html");
+});
 
-const Question = mongoose.model("Question",questionSchema);
 app.post('/question',function(req,res){
     var quest=req.body.ques;
     var opt1=req.body.option1;
