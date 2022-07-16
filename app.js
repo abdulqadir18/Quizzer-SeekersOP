@@ -1,4 +1,3 @@
-//dependencies
 var express=require("express");
 var bodyParser=require("body-parser");
 var nodemailer = require('nodemailer');
@@ -111,7 +110,7 @@ app.post("/login",function(req,res)
 	if (result===null) console.log("Incorrect credentials");
 	else console.log(result.name + " welcome to Quizzer");
 	});
-	res.redirect('success.html');
+	res.redirect('create.html');
 })
 
 var questionSchema = mongoose.Schema({
