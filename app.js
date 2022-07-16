@@ -93,7 +93,7 @@ app.post("/verification",function(req,res){
     });
 	}
 	else console.log("OTP not matched");
-	res.redirect('success.html');
+	res.redirect('create.html');
 })
 
 
@@ -109,12 +109,15 @@ app.post("/login",function(req,res)
 
 	db.collection('details').findOne(loginData,function(err, result){
 	if (err) throw err;
-	if (result===null) console.log("Incorrect credentials");
-	else console.log(result.name + " welcome to Quizzer");
+  if (result===null) {console.log("Incorrect credentials"); res.redirect('failure.html');}
+	else {console.log(result.name + " welcome to Quizzer"); res.redirect('create.html');}
 	});
-	res.redirect('success.html');
 })
 
+app.post("/failure",function(req,res)
+{
+  res.redirect('login.html');
+})
 
 //GET
 app.get('/',function(req,res){
