@@ -1,3 +1,4 @@
+//----------------------Dependencies
 var express=require("express");
 var bodyParser=require("body-parser");
 var nodemailer = require('nodemailer');
@@ -19,6 +20,8 @@ app.use(bodyParser.urlencoded({
    extended: true
 }));
 
+
+//--------------------------------Log In and Sign Up
 //POST SignUp
 var data={
 	"name": '',
@@ -89,10 +92,10 @@ app.post("/verification",function(req,res){
 		db.collection('details').insertOne(data,function(err, collection){
     if (err) throw err;
        console.log("Record inserted Successfully");
+       res.redirect('create.html');
     });
 	}
-	else console.log("OTP not matched");
-	res.redirect('create.html');
+	else {console.log("OTP not matched"); res.redirect('failure_signup.html');}
 })
 
 //POST Login
@@ -107,12 +110,22 @@ app.post("/login",function(req,res)
 
 	db.collection('details').findOne(loginData,function(err, result){
 	if (err) throw err;
-	if (result===null) console.log("Incorrect credentials");
-	else console.log(result.name + " welcome to Quizzer");
+	if (result===null) {console.log("Incorrect credentials"); res.redirect('failure_login.html');}
+	else {console.log(result.name + " welcome to Quizzer"); res.redirect('create.html');}
 	});
-	res.redirect('create.html');
 })
 
+//login failure
+app.post("/failure_login",function(req,res){
+  res.redirect('login.html');
+})
+//Signup failure
+app.post("/failure_signup",function(req,res){
+  res.redirect('signup.html');
+})
+
+
+//----------------------------------Create Quiz
 var questionSchema = mongoose.Schema({
     questionText:String,
     option1: String,
@@ -148,7 +161,9 @@ app.post('/question',function(req,res){
     question.save();
     res.sendFile(__dirname+"/public/create2.html");
 });
-//GET
+
+
+//-------------------------------------GET
 app.get('/',function(req,res){
    res.set({
       'Access-control-Allow-Origin': '*'
